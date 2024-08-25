@@ -1,0 +1,16 @@
+{
+  "tasks": [
+    {
+      "type": "go",
+      "label": "go: build package",
+      "command": "run",
+      "args": ["cmd/colorpicker/main.go"],
+      "problemMatcher": ["$go"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "detail": "cd ./cmd/colorpicker; go build ${fileDirname}"
+    }
+  ]
+}
