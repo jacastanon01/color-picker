@@ -1,9 +1,9 @@
 package color
 
 type HSB struct {
-	Hue float64 // 0 to 360
-	Saturation float64 // 0 to 1.0
-	Brightness float64 // 0 to 1.0
+	Hue        float32 // 0 to 360
+	Saturation float32 // 0 to 1.0
+	Brightness float32 // 0 to 1.0
 }
 
 type RGB struct {
