@@ -2,6 +2,7 @@ package color
 
 import (
 	"fmt"
+
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 

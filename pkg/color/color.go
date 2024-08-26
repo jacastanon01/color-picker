@@ -7,7 +7,7 @@ type HSB struct {
 }
 
 type RGB struct {
-	Red uint8 // 0 to 255
-	Green uint8	// 0 to 255
-	Blue uint8 // 0 to 255
+	Red   uint8 // 0 to 255
+	Green uint8 // 0 to 255
+	Blue  uint8 // 0 to 255
 }
