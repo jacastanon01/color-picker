@@ -22,6 +22,8 @@ func main() {
 
 		color.GenerateSpectrum(w, h)
 
+		color.DisplayPosText()
+
 		rl.EndDrawing()
 	}
 }
