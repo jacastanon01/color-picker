@@ -27,10 +27,14 @@ func GenerateSpectrum(w, h int32) [][]HSB {
 	return spectrum
 }
 
-func DisplayPosText() {
+func DisplayRGBText() {
 	if rl.IsMouseButtonReleased(rl.MouseButtonLeft) {
 		pos := rl.GetMousePosition()
-		text := fmt.Sprintf("X: %d, Y: %d", int(pos.X), int(pos.Y))
+		screen := rl.LoadImageFromScreen()
+		imgdata := rl.GetImageColor(*screen, int32(pos.X), int32(pos.Y))
+		rl.UnloadImage(screen)
+
+		text := fmt.Sprintf("R: %d\nG: %d\nB: %d", imgdata.R, imgdata.G, imgdata.B)
 		rl.DrawText(text, int32(pos.X-float32(25)), int32(pos.Y), 20, rl.White)
 	}
 }
