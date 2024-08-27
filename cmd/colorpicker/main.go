@@ -9,7 +9,7 @@ func main() {
 	const w int32 = 900
 	const h int32 = 450
 
-	rl.InitWindow(w, h, "raylib [core] example - basic window")
+	rl.InitWindow(w, h, "Go Color Picker")
 	defer rl.CloseWindow()
 
 	rl.SetTargetFPS(60)
