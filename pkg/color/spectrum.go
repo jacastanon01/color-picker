@@ -2,42 +2,37 @@ package color
 
 import (
 	"fmt"
-
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
-func GenerateSpectrum(w, h int32) [][]HSB {
+func GenerateSpectrum(w, h int32) *rl.Image {
 	const min, max float32 = 0.5, 1.0
-	spectrum := make([][]HSB, h)
-	for y := range spectrum {
-		spectrum[y] = make([]HSB, w) // see if there is a way to insert this outside the loop. Calling make every loop may be iniefficient
-		percent := float32(y) / float32(h)
+	image := rl.GenImageColor(int(w), int(h), rl.Blank)
 
-		for x := range spectrum[y] {
-			spectrum[y][x].Hue = GenerateThreshold((float32(x) / float32(w)), 360, 0)
-			spectrum[y][x].Saturation = 1.0 // default to full saturation
-			spectrum[y][x].Brightness = GenerateThreshold(percent, max, min)
+	// spectrum := make([][]HSB, h)
+	for y := int32(0); y < h; y++ {
+		// spectrum[y] = make([]HSB, w) // see if there is a way to insert this outside the loop. Calling make every loop may be iniefficient
+		for x := int32(0); x < w; x++ {
+			var hue float32 = ScaleValue((float32(x) / float32(w)), 360, 0)
+			var saturation float32 = 1 // default to full saturation
+			var brightness float32 = ScaleValue(float32(y)/float32(h), max, min)
 
-			rl.DrawPixel(
-				int32(x), int32(y), rl.ColorFromHSV(spectrum[y][x].Hue, spectrum[y][x].Saturation, spectrum[y][x].Brightness),
+			imageRGB := rl.ColorFromHSV(hue, saturation, brightness)
+			rl.ImageDrawPixel(
+				image, int32(x), int32(y), imageRGB,
 			)
 		}
 	}
-
-	return spectrum
+	return image
 }
 
-func DisplayRGBText() {
-	pos := rl.GetMousePosition()
+func DisplayColorAtPosition(cachedImg *rl.Image, x, y int32) {
+	colors := rl.GetImageColor(*cachedImg, x, y)
 
-	screen := rl.LoadImageFromScreen()
-	img := rl.GetImageColor(*screen, int32(pos.X), int32(pos.Y))
-	rl.UnloadImage(screen)
-
-	text := fmt.Sprintf("R: %d\nG: %d\nB: %d", img.R, img.G, img.B)
-	rl.DrawText(text, int32(pos.X-float32(25)), int32(pos.Y), 20, rl.White)
+	text := fmt.Sprintf("R: %d G: %d B: %d", colors.R, colors.G, colors.B)
+	rl.DrawText(text, x, y, 20, rl.White)
 }
 
-func GenerateThreshold(value, max, min float32) float32 {
+func ScaleValue(value, max, min float32) float32 {
 	return (value * (max - min)) + min
 }
