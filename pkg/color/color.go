@@ -1,13 +1,12 @@
 package color
 
-type HSB struct {
-	Hue        float32 // 0 to 360
-	Saturation float32 // 0 to 1.0
-	Brightness float32 // 0 to 1.0
+import rl "github.com/gen2brain/raylib-go/raylib"
+
+type ColorPicker struct {
+	Image   *rl.Image
+	Texture rl.Texture2D
 }
 
-type RGB struct {
-	Red   uint8 // 0 to 255
-	Green uint8 // 0 to 255
-	Blue  uint8 // 0 to 255
+func (cp *ColorPicker) GetColorAtPosition(x, y int32) rl.Color {
+	return rl.GetImageColor(*cp.Image, x, y)
 }
