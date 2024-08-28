@@ -16,7 +16,7 @@ func GenerateSpectrum(w, h int32) *rl.Image {
 
 			imageRGB := rl.ColorFromHSV(hue, saturation, brightness)
 			rl.ImageDrawPixel(
-				image, int32(x), int32(y), imageRGB,
+				image, x, y, imageRGB,
 			)
 		}
 	}
