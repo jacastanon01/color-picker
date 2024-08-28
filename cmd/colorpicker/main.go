@@ -31,11 +31,9 @@ func main() {
 		rl.DrawTexture(texture, 0, 0, rl.White)
 
 		if rl.IsMouseButtonReleased(rl.MouseButtonLeft) {
-			// color.DisplayRGBText()
 			pos = rl.GetMousePosition()
 			colors := colorpicker.GetColorAtPosition(int32(pos.X), int32(pos.Y))
 			displayData[pos] = colors
-			// color.DisplayColorAtPosition(cachedImg, int32(pos.X), int32(pos.Y))
 		}
 
 		for pos, colors := range displayData {
