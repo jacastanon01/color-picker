@@ -6,7 +6,7 @@
 
 This is an exploration of how pixels store color. RGB is generally vonsidered the pigments of light with something blah blah talk about how color is defined by light. My goal with this project is to learn more about differents way to generate data that can be used for colors. I used [raylib]("https://www.raylib.com/") to create a simple color spectrum where you can pick a color and see the resulting value of the pixel in RGB format.
 
-## Understanding Color and Its Measurement
+## Understanding color and its measurement
 
 Color is a visual perception created by the interaction of light with our eyes. Light consists of electromagnetic waves, and when it strikes an object, certain wavelengths are absorbed while others are reflected. Our eyes perceive these reflected wavelengths as color. In digital systems, color is often represented using the RGB (Red, Green, Blue) model, which combines these three primary colors of light at varying intensities to create a spectrum of colors. Alternatively, the HSL (Hue, Saturation, Lightness) model measures color differently by defining its hue (the type of color), saturation (the intensity of the color), and lightness (the brightness of the color). When creating a color palette with only two pigments, the resulting spectrum is limited, often focusing on gradients between the two, producing a harmonious and visually cohesive range of colors. I generated the HSL values based on pixel position and then converted that data into an RGB format:
 
