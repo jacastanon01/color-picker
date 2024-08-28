@@ -4,8 +4,7 @@
 
 ## Overview
 
-This is an exploration of how pixels store color. RGB is generally vonsidered the pigments of light with something blah blah talk about how color is defined by light. My goal with this project is to learn more about differents way to generate data that can be used for colors. I used [raylib]("https://www.raylib.com/") to create a simple color spectrum where you can pick a color and see the resulting value of the pixel in RGB format. 
-
+This is an exploration of how pixels store color. RGB is generally vonsidered the pigments of light with something blah blah talk about how color is defined by light. My goal with this project is to learn more about differents way to generate data that can be used for colors. I used [raylib]("https://www.raylib.com/") to create a simple color spectrum where you can pick a color and see the resulting value of the pixel in RGB format.
 
 ## Understanding Color and Its Measurement
 
@@ -33,12 +32,13 @@ func GenerateSpectrum(w, h int32) *rl.Image {
 ```
 
 ## Made with
+
 - Go's standard library
 - Raylib
 - ❤️ and 🧐
 
 ## How to run
+
 - [Install Go](https://go.dev/doc/install)
 - Clone this repo `git clone https://github.com/jacastanon01/color-picker.git`
 - Navigate to the cloned directory. If using VSCode, use the build options to launch the program or run `go run cmd/colorpicker/main.go` at the root
-
