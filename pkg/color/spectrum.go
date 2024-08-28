@@ -8,9 +8,7 @@ func GenerateSpectrum(w, h int32) *rl.Image {
 	const min, max float32 = 0.5, 1.0
 	image := rl.GenImageColor(int(w), int(h), rl.Blank)
 
-	// spectrum := make([][]HSB, h)
 	for y := int32(0); y < h; y++ {
-		// spectrum[y] = make([]HSB, w) // see if there is a way to insert this outside the loop. Calling make every loop may be iniefficient
 		for x := int32(0); x < w; x++ {
 			var hue float32 = ScaleValue((float32(x) / float32(w)), 360, 0)
 			var saturation float32 = 1 // default to full saturation
