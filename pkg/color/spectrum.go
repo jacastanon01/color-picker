@@ -1,7 +1,6 @@
 package color
 
 import (
-	"fmt"
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
@@ -24,13 +23,6 @@ func GenerateSpectrum(w, h int32) *rl.Image {
 		}
 	}
 	return image
-}
-
-func DisplayColorAtPosition(cachedImg *rl.Image, x, y int32) {
-	colors := rl.GetImageColor(*cachedImg, x, y)
-
-	text := fmt.Sprintf("R: %d G: %d B: %d", colors.R, colors.G, colors.B)
-	rl.DrawText(text, x, y, 20, rl.White)
 }
 
 func ScaleValue(value, max, min float32) float32 {
