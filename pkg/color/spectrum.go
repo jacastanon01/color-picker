@@ -14,7 +14,7 @@ func GenerateSpectrum(w, h int32) [][]HSB {
 		percent := float32(y) / float32(h)
 
 		for x := range spectrum[y] {
-			spectrum[y][x].Hue = GenerateThreshold((float32(x) / float32(w)), 0, 360)
+			spectrum[y][x].Hue = GenerateThreshold((float32(x) / float32(w)), 360, 0)
 			spectrum[y][x].Saturation = 1.0 // default to full saturation
 			spectrum[y][x].Brightness = GenerateThreshold(percent, max, min)
 
@@ -28,15 +28,14 @@ func GenerateSpectrum(w, h int32) [][]HSB {
 }
 
 func DisplayRGBText() {
-	if rl.IsMouseButtonReleased(rl.MouseButtonLeft) {
-		pos := rl.GetMousePosition()
-		screen := rl.LoadImageFromScreen()
-		imgdata := rl.GetImageColor(*screen, int32(pos.X), int32(pos.Y))
-		rl.UnloadImage(screen)
+	pos := rl.GetMousePosition()
 
-		text := fmt.Sprintf("R: %d\nG: %d\nB: %d", imgdata.R, imgdata.G, imgdata.B)
-		rl.DrawText(text, int32(pos.X-float32(25)), int32(pos.Y), 20, rl.White)
-	}
+	screen := rl.LoadImageFromScreen()
+	img := rl.GetImageColor(*screen, int32(pos.X), int32(pos.Y))
+	rl.UnloadImage(screen)
+
+	text := fmt.Sprintf("R: %d\nG: %d\nB: %d", img.R, img.G, img.B)
+	rl.DrawText(text, int32(pos.X-float32(25)), int32(pos.Y), 20, rl.White)
 }
 
 func GenerateThreshold(value, max, min float32) float32 {

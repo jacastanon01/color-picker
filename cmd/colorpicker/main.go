@@ -17,9 +17,11 @@ func main() {
 	for !rl.WindowShouldClose() && rl.IsWindowFocused() {
 		rl.BeginDrawing()
 		rl.ClearBackground(rl.RayWhite)
-
 		color.GenerateSpectrum(w, h)
-		color.DisplayPosText()
+
+		if rl.IsMouseButtonReleased(rl.MouseButtonLeft) {
+			color.DisplayRGBText()
+		}
 
 		rl.EndDrawing()
 	}
