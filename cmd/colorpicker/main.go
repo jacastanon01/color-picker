@@ -13,36 +13,39 @@ func main() {
 
 	rl.InitWindow(w, h, "Go Color Picker")
 
-	image := color.GenerateSpectrum(w, h)
-	texture := rl.LoadTextureFromImage(image)
-	colorpicker := &color.ColorPicker{Image: image, Texture: texture}
+	colorpicker := initColorPicker(w, h)
 
-	displayData := make(map[rl.Vector2]rl.Color)
+	displayData := make(map[rl.Vector2]string)
 	defer rl.CloseWindow()
+	defer rl.UnloadTexture(colorpicker.Texture)
+	defer rl.UnloadImage(colorpicker.Image)
 
 	rl.SetTargetFPS(60)
-	var pos rl.Vector2
 
 	for !rl.WindowShouldClose() && rl.IsWindowFocused() {
 
 		rl.BeginDrawing()
 		rl.ClearBackground(rl.RayWhite)
 
-		rl.DrawTexture(texture, 0, 0, rl.White)
+		rl.DrawTexture(colorpicker.Texture, 0, 0, rl.White)
 
 		if rl.IsMouseButtonReleased(rl.MouseButtonLeft) {
-			pos = rl.GetMousePosition()
+			pos := rl.GetMousePosition()
 			colors := colorpicker.GetColorAtPosition(int32(pos.X), int32(pos.Y))
-			displayData[pos] = colors
+			displayData[pos] = fmt.Sprintf("R: %d\nG: %d\nB: %d\n", colors.R, colors.G, colors.B)
 		}
 
-		for pos, colors := range displayData {
-			text := fmt.Sprintf("R: %d\nG: %d\nB: %d\n", colors.R, colors.G, colors.B)
+		for pos, text := range displayData {
 			rl.DrawText(text, int32(pos.X), int32(pos.Y), 10, rl.White)
 		}
 
 		rl.EndDrawing()
 	}
-	rl.UnloadTexture(texture)
-	rl.UnloadImage(image)
+}
+
+func initColorPicker(w, h int32) *color.ColorPicker {
+	image := color.GenerateSpectrum(w, h)
+	texture := rl.LoadTextureFromImage(image)
+	colorpicker := &color.ColorPicker{Image: image, Texture: texture}
+	return colorpicker
 }
